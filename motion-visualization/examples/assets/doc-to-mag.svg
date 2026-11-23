@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <style>
+    .p{fill:#fff;stroke:#0F1B2D;stroke-width:3}
+    .l{stroke:#9AA6B6;stroke-width:6;stroke-linecap:round}
+    .a{stroke:#2F6FEB;stroke-width:4;stroke-dasharray:8 10;animation:d 1.2s linear infinite}
+    .m{animation:b 3.2s ease-in-out infinite}
+    @keyframes d{to{stroke-dashoffset:-36}}
+    @keyframes b{50%{transform:translateY(-8px)}}
+  </style>
+  <rect class="p" x="40" y="120" width="120" height="160" rx="10"/>
+  <path class="l" d="M62 150h76M62 172h76M62 194h60M62 216h76M62 238h44"/>
+  <path class="a" d="M175 200 C 205 170, 225 230, 250 200"/>
+  <path d="M244 190l14 10-14 10" stroke="#2F6FEB" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g class="m">
+    <rect class="p" x="262" y="96" width="112" height="208" rx="14"/>
+    <rect x="276" y="112" width="84" height="54" rx="8" fill="#DCE7FD"/>
+    <circle cx="300" cy="139" r="12" fill="#2F6FEB"/>
+    <rect x="276" y="178" width="60" height="10" rx="5" fill="#0F1B2D"/>
+    <rect x="276" y="196" width="84" height="8" rx="4" fill="#CFD7E2"/>
+    <rect x="276" y="212" width="70" height="8" rx="4" fill="#CFD7E2"/>
+    <rect x="276" y="236" width="38" height="44" rx="8" fill="#D2F4EF"/>
+    <rect x="322" y="236" width="38" height="44" rx="8" fill="#14B8A6"/>
+  </g>
+</svg>
