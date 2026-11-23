@@ -1,0 +1,11 @@
+{
+  "owner": "Anthropic",
+  "source": "https://www.anthropic.com/press-kit",
+  "fetched": "2026-11-19",
+  "files": {
+    "claude-code-slate.svg": "Claude Code 로고 (밝은 배경)",
+    "claude-code-ivory.svg": "Claude Code 로고 (어두운 배경)",
+    "claude-spark-clay.svg": "Claude Spark 심볼"
+  },
+  "rules": "공식 프레스킷 자료. 색 변경 금지, Anthropic 로고와 붙여 쓰지 않기. 소개·설명 목적으로 출처 표시."
+}
