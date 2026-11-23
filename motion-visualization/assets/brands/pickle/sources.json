@@ -1,0 +1,15 @@
+{
+  "owner": "Pickle, Inc.",
+  "source": "https://pickle.com/press-kit",
+  "zip": "https://pickle.com/press-kit-files/pickle-press-kit.zip",
+  "fetched": "2026-11-19",
+  "files": {
+    "logo.svg": "기본 로고",
+    "logo-white.svg": "어두운 배경용 로고",
+    "symbol.svg": "심볼",
+    "symbol-white.svg": "심볼을 흰색으로 칠한 것(색만 변경)",
+    "pieup.webp": "대표 캐릭터 ㅍ (흰 배경 투명 처리, 560px)",
+    "connect-screen.webp": "앱 및 서비스 연결 화면 예시(프레스킷 제품 화면)"
+  },
+  "rules": "프레스킷 공개 자료. 제품 소개·교육 목적으로 출처를 표시해 사용. 상표는 Pickle, Inc. 소유."
+}
