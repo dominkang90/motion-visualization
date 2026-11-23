@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300" role="img" aria-label="같은 초보자판 페이지: 손으로 쓴 분량 37,940자, 스킬 사용 시 content.json 16,191자">
+  <style>
+    .t{font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+    .g{animation:g 1.2s ease-out both;transform-origin:left;transform-box:fill-box}
+    .g2{animation-delay:.3s}
+    @keyframes g{from{transform:scaleX(0)}}
+  </style>
+  <rect width="900" height="300" rx="20" fill="#F4F0E8"/>
+  <text x="40" y="52" class="t" font-size="22" font-weight="800" fill="#141413">같은 초보자판 페이지를 만들 때 AI가 직접 쓴 분량</text>
+  <text x="40" y="80" class="t" font-size="14" fill="#77716a">2026-11 실제 측정 · 글자 수 기준 (토큰 수는 측정하지 않음)</text>
+  <text x="40" y="138" class="t" font-size="15" font-weight="700" fill="#141413">손으로 페이지 작성</text>
+  <rect class="g" x="200" y="118" width="600" height="30" rx="6" fill="#B8B0A2"/>
+  <text x="788" y="139" class="t" font-size="15" font-weight="800" fill="#fff" text-anchor="end">37,940자</text>
+  <text x="40" y="198" class="t" font-size="15" font-weight="700" fill="#141413">모션시각화 사용</text>
+  <rect class="g g2" x="200" y="178" width="256" height="30" rx="6" fill="#D97757"/>
+  <text x="466" y="199" class="t" font-size="15" font-weight="800" fill="#141413">16,191자 (content.json)</text>
+  <text x="40" y="262" class="t" font-size="14" fill="#3d3a35">손으로 쓴 쪽은 디자인 코드를 앞 버전에서 재사용해 뺀 값이라, 처음부터 만들면 차이가 더 큽니다.</text>
+</svg>
