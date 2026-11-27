@@ -1,5 +1,5 @@
 {
-  "meta": {"title": "우체통 안내서 · 처음 배우는 사람용", "brand": "우체통", "issue": "처음 배우는 사람용 · 쉬운 말 버전<br>피클 × 깃허브 × 클로드 코드", "theme": "paper", "level": "beginner", "storageKey": "pickle-bridge-kids",
+  "meta": {"title": "우체통 안내서 · 처음 배우는 사람용", "brand": "우체통", "issue": "처음 배우는 사람용 · 쉬운 말 버전<br>피클 × 깃허브 × 클로드 코드", "theme": "paper", "level": "beginner", "storageKey": "pickle-bridge-kids", "goal": "처음 배우는 사람이 피클과 클로드 코드를 깃허브 우체통으로 이어 쓰게 한다", "purpose": "do", "terms": ["클로드 코드", "Pickle Bridge"],
     "labels": {"step": "단계", "more": "더 알아보기", "ok": "잘 됐나요?", "progress": "얼마나 했나요?", "allDone": "우체통 개통 축하해요!", "know": "무엇을 알까요?", "does": "무엇을 할까요?", "key": "어떤 열쇠를 쓸까요?", "good": "이런 사람에게 좋아요", "bad": "이런 건 잘 못 해요", "okGood": "실제로 해 보고 확인한 것", "okBad": "아직 확인하지 못한 것", "sources": "그림 출처와 자세한 기록 펼치기"}},
   "images": {
     "pieup": "brand:pickle/pieup.webp", "pkLogo": "brand:pickle/logo.svg", "pkSymW": "brand:pickle/symbol-white.svg", "conn": "brand:pickle/connect-screen.webp",

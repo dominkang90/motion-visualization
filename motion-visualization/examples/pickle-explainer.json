@@ -1,0 +1,34 @@
+{
+  "meta": {"kind": "explainer", "title": "우체통 · 설명 영상", "brand": "우체통", "theme": "paper", "ratio": "16:9"},
+  "images": {"pieup": "brand:pickle/pieup.webp", "spark": "brand:anthropic/claude-spark-clay.svg", "ghW": "brand:github/invertocat-white.svg", "conn": "brand:pickle/connect-screen.webp"},
+  "scenes": [
+    {"type": "title", "kicker": "AI 두 개를 잇는 법", "title": "폰 속 AI와 집 컴퓨터 AI가\n**쪽지**를 주고받는다면?", "icons": ["@pieup", "@spark"], "say": "둘을 잇는 **우체통** 이야기예요"},
+    {"type": "chapter", "no": "01", "title": "둘은 서로 몰라요", "say": "먼저 문제부터 볼게요"},
+    {"type": "compare", "cols": [
+      {"icon": "@pieup", "title": "피클", "items": ["일정·메일은 알아요", "*집 컴퓨터 파일은 몰라요"]},
+      {"icon": "@spark", "title": "클로드 코드", "items": ["컴퓨터 파일은 고쳐요", "*폰에서 한 대화는 몰라요"]}],
+     "beats": [{"show": 0, "say": "피클은 일정과 메일을 알지만"}, {"show": 1, "say": "클로드 코드는 **대화**를 몰라요"}]},
+    {"type": "kinetic", "text": "둘 다 같은 깃허브를 써요", "hl": "깃허브", "sub": "그래서 거기에 우체통을 둬요", "say": "그래서 **깃허브**에 우체통을 둬요"},
+    {"type": "chapter", "no": "02", "title": "우체통 하나로 연결", "say": "구조는 딱 세 칸이에요"},
+    {"type": "build", "token": "쪽지",
+     "nodes": [{"id": "p", "icon": "@pieup", "label": "피클", "sub": "폰"}, {"id": "h", "hub": true, "icon": "@ghW", "label": "우체통", "sub": "비공개 깃허브"}, {"id": "c", "icon": "@spark", "label": "클로드 코드", "sub": "집 컴퓨터"}],
+     "links": [["p", "h", "부탁 쪽지"], ["c", "h", "결과 쪽지"]],
+     "beats": [
+      {"show": ["p"], "focus": "p", "say": "밖에서 피클에게 부탁하면"},
+      {"show": ["h"], "link": [0], "send": 0, "say": "**부탁 쪽지**가 우체통에 들어가요"},
+      {"show": ["c"], "link": [1], "focus": "c", "say": "집에서 클로드 코드가 읽고 일해요"},
+      {"send": 1, "say": "끝나면 **결과 쪽지**를 넣어요"},
+      {"mark": {"h": "ok"}, "focus": "h", "say": "서버도, 비밀번호 공유도 **필요 없어요**"}]},
+    {"type": "chapter", "no": "03", "title": "쪽지 한 장은 네 칸", "say": "실제 첫 쪽지를 볼게요"},
+    {"type": "doc", "title": "[report] pickle-bridge 로컬 연결 테스트 #1", "meta": "실제 PR #1 본문 · 화면 틀은 다시 그린 것",
+     "rows": [["무엇을", "로컬 Claude Code에서 report PR을 올리는 흐름을 시험합니다."], ["왜", "작업 결과를 PR로 남기려면 클론·로그인·PR 생성이 되는지 확인해야 합니다."], ["다음 할 일", "피클이 이 PR이 보이는지 확인해 주세요."], ["확인한 것 / 못 한 것", "클론·로그인·푸시 확인 / 피클 쪽에서 읽히는지는 아직"]],
+     "beats": [{"say": "쪽지는 이렇게 생겼어요"}, {"row": 1, "label": "한 문장으로 용건", "say": "**무엇을** 했는지 한 문장"}, {"row": 2, "label": "다시 설명 안 해도 되게", "say": "**왜** 했는지 배경"}, {"row": 3, "label": "상대가 이어받을 일", "say": "**다음 할 일**을 넘기고"}, {"row": 4, "label": "믿어도 되는 것 / 아직 모르는 것", "say": "**확인한 것**과 못 한 것을 나눠요"}]},
+    {"type": "chapter", "no": "04", "title": "처음 한 번만 준비", "say": "준비는 네 단계예요"},
+    {"type": "list", "items": [{"icon": "phone", "title": "피클에 깃허브 연결"}, {"icon": "lock", "title": "비공개 우체통 만들기"}, {"icon": "laptop", "title": "컴퓨터로 복사해 오기"}, {"icon": "chat", "title": "클로드 코드에 첫 부탁"}],
+     "beats": [{"say": "피클 앱에서 깃허브를 연결하고"}, {"say": "**비공개** 우체통을 만들고"}, {"say": "집 컴퓨터로 복사해 온 뒤"}, {"say": "클로드 코드에게 첫 부탁을 해요"}]},
+    {"type": "focus", "img": "@conn", "caption": "피클 공식 홍보 이미지 · 연결 화면 예시",
+     "beats": [{"say": "연결은 피클 앱 이 화면에서 해요"}, {"zoom": [0.08, 0.2, 0.84, 0.4], "box": [0.18, 0.275, 0.66, 0.22], "label": "연결되면 체크 표시", "say": "연결된 서비스엔 **체크**가 떠요"}]},
+    {"type": "map", "rows": [["일을 시킬 때", "pickle-bridge PR 봐"], ["일이 끝났을 때", "PR로 남겨 줘"]], "say": "그다음부턴 **두 마디**면 돼요"},
+    {"type": "end", "title": "오늘의 핵심", "points": ["우체통은 **비공개** 깃허브 상자", "쪽지는 **네 칸**으로", "비밀번호는 절대 넣지 않기"], "say": "직접 한 번 해 보세요"}
+  ]
+}

@@ -5,7 +5,9 @@
   "issue": "스킬 사용 안내 · 2026년 11월<br>클로드 · 챗GPT · 코덱스",
   "theme": "calm",
   "level": "expert",
-  "storageKey": "motion-visualization-guide"
+  "storageKey": "motion-visualization-guide",
+  "goal": "스킬을 처음 보는 사람이 무엇을 해 주는지 알고 설치까지 한다",
+  "purpose": "learn"
  },
  "images": {
   "hero": "assets/doc-to-mag.svg"

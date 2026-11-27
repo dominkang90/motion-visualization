@@ -1,0 +1,17 @@
+{
+ "owner": "The Document Foundation",
+ "source": "https://www.libreoffice.org/ (헤더 로고·앱 아이콘 /media/*.svg), 다운로드 화면 https://www.libreoffice.org/download/download-libreoffice/",
+ "zip": "",
+ "fetched": "2026-11-24",
+ "files": {
+  "libreoffice-tdf-logo.svg": "LibreOffice + The Document Foundation 로고(사이트 헤더 원본)",
+  "libo-writer.svg": "Writer 아이콘",
+  "libo-calc.svg": "Calc 아이콘",
+  "libo-impress.svg": "Impress 아이콘",
+  "libo-draw.svg": "Draw 아이콘",
+  "libo-base.svg": "Base 아이콘",
+  "libo-math.svg": "Math 아이콘",
+  "download-page.png": "공식 다운로드 화면 실제 캡처(1280x800, 2026-11-24)"
+ },
+ "rules": "TDF 상표 정책(wiki.documentfoundation.org/TradeMark_Policy): 공식 사이트의 원본 그래픽을 변형 없이 사용, TDF 공식 제휴·보증처럼 보이게 하지 않기. LibreOffice·The Document Foundation은 각 소유자의 등록 상표. 사이트 글·이미지는 CC BY-SA 3.0(별도 표시 제외)."
+}

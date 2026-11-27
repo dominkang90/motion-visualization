@@ -1,0 +1,8 @@
+{
+  "owner": "Netlify, Inc.",
+  "source": "https://www.netlify.com/press/",
+  "zip": "https://www.netlify.com/assets/logos/netlify-logo-full.zip , https://www.netlify.com/assets/logos/netlify-logo-monogram.zip",
+  "fetched": "2026-11-27",
+  "files": {"logo-full-light.svg": "전체 로고(밝은 배경용)", "logo-full-dark.svg": "전체 로고(어두운 배경용)", "monogram-light.svg": "모노그램(밝은 배경용)", "monogram-dark.svg": "모노그램(어두운 배경용)"},
+  "rules": "공식 프레스 페이지 배포 파일. 변형·색 변경 금지, 보증처럼 보이게 하지 않기(세부 가이드 페이지는 이번에 확인 못 함)."
+}
