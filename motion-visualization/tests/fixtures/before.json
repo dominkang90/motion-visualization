@@ -1,0 +1,322 @@
+{
+ "meta": {
+  "title": "Netlify vs Vercel 차이점",
+  "brand": "Netlify vs Vercel",
+  "issue": "배포 플랫폼 비교 · 2026년 11월<br>공식 요금표·약관 기준",
+  "theme": "calm",
+  "level": "expert",
+  "mode": "deck",
+  "storageKey": "netlify-vs-vercel",
+  "sides": [
+   "Netlify",
+   "Vercel"
+  ],
+  "purpose": "decide"
+ },
+ "images": {},
+ "cover": {
+  "kicker": "HOSTING COMPARE",
+  "title": "같은 무료,<br><em>다른 계산법</em>",
+  "sub": "무료 상업 사용, Next.js, 팀 인원수가 갈림길입니다.",
+  "lines": [
+   [
+    "요금 구조",
+    "크레딧 한 통 vs 항목별 한도"
+   ],
+   [
+    "무료 플랜",
+    "상업적 사용 가능 여부가 다름"
+   ],
+   [
+    "팀 요금",
+    "인원 무제한 vs 개발자 1인당"
+   ]
+  ]
+ },
+ "sections": [
+  {
+   "nav": "결론",
+   "kicker": "EDITOR'S NOTE",
+   "title": "한 줄로 고르면",
+   "blocks": [
+    {
+     "type": "verdict",
+     "quote": "Next.js로 앱을 만들면 <b>Vercel</b>, 무료로 회사·가게 사이트를 올리거나 여러 명이 함께 쓰면 <b>Netlify</b>가 편합니다.",
+     "stats": [
+      [
+       "300",
+       "크레딧",
+       "Netlify 무료 월 한도"
+      ],
+      [
+       "100",
+       "GB",
+       "Vercel 무료 월 전송량"
+      ],
+      [
+       "9",
+       "달러",
+       "Netlify 최저 유료(월)"
+      ],
+      [
+       "20",
+       "달러",
+       "두 회사 Pro 시작가(월)"
+      ]
+     ],
+     "fit": {
+      "goodTitle": "Netlify가 맞는 경우",
+      "badTitle": "Vercel이 맞는 경우",
+      "good": [
+       "무료 플랜으로 상업 사이트를 운영해야 할 때",
+       "팀원이 여러 명인데 Pro 한 요금으로 묶고 싶을 때(인원 무제한)",
+       "문의 폼·DB를 별도 서비스 없이 붙이고 싶을 때"
+      ],
+      "bad": [
+       "Next.js 새 기능을 가장 먼저, 설정 없이 쓰고 싶을 때",
+       "Python·Ruby 같은 다른 언어로 서버 함수를 돌릴 때",
+       "오래 걸리는 서버 작업이 있을 때(Pro 최대 800초)"
+      ]
+     },
+     "next": {
+      "html": "이미 Vercel로 앱을 운영 중이라면 <b>상업용인지</b>부터 확인하세요. 상업용이면 Hobby가 아니라 Pro가 약관상 맞습니다."
+     }
+    }
+   ]
+  },
+  {
+   "nav": "성격",
+   "kicker": "TWO CHARACTERS",
+   "title": "두 회사의 출발점이 다릅니다",
+   "blocks": [
+    {
+     "type": "scenes",
+     "items": [
+      {
+       "alt": "Netlify 로고",
+       "quote": "사이트 배포에 필요한 걸 한 상자에",
+       "text": "정적 사이트·Jamstack에서 출발했습니다. 폼 처리, Postgres DB(Netlify Database), 파일 저장(Blobs)을 기본으로 붙여 줍니다. 새 프로젝트는 공개 전까지 비공개로 시작합니다."
+      },
+      {
+       "alt": "Vercel 로고",
+       "quote": "Next.js를 만든 회사의 실행 환경",
+       "text": "Next.js 개발사라 새 기능(서버 컴포넌트, 스트리밍 등)이 가장 먼저 맞춰집니다. 서버 함수는 Node.js·Python·Go·Ruby를 지원하고, 한 인스턴스가 여러 요청을 함께 처리하는 Fluid compute로 돌아갑니다."
+      }
+     ],
+     "bridge": {
+      "html": "둘 다 Git 연결 자동 배포, 미리보기 주소, 한 번에 되돌리기, 전 세계 CDN은 기본입니다."
+     }
+    }
+   ]
+  },
+  {
+   "nav": "요금 구조",
+   "kicker": "HOW YOU PAY",
+   "title": "가장 큰 차이는<br>돈을 세는 방식",
+   "lede": "같은 사용량이어도 계산법이 다르므로, 한도를 넘었을 때 벌어지는 일도 다릅니다.",
+   "blocks": [
+    {
+     "type": "lanes",
+     "items": [
+      {
+       "title": "Netlify · 크레딧 한 통",
+       "steps": [
+        "배포·서버 실행·전송량·요청·폼 제출이 <b>모두 같은 크레딧</b>에서 빠짐",
+        "무료 300 / Personal 1,000 / Pro 3,000~20,000 크레딧",
+        "무료 한도 도달 시 <b>계정의 모든 프로젝트가 다음 달까지 일시정지</b>",
+        "유료는 자동 충전(기본 꺼짐)을 켜야 계속 운영"
+       ]
+      },
+      {
+       "title": "Vercel · 항목별 한도",
+       "tone": "b",
+       "steps": [
+        "전송량·요청 수·함수 실행·이미지 변환 등 <b>항목마다 한도</b>",
+        "Hobby: 전송 100GB, 함수 호출 100만 회, CPU 4시간(월)",
+        "Hobby 한도 초과 시 해당 기능은 <b>30일 대기</b>, 추가 구매 불가",
+        "Pro: $20 사용 크레딧 포함, 이후 종량제. 기본 예산 $200 알림, 도달 시 멈춤 설정 가능"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nav": "플랜",
+   "kicker": "PLANS SIDE BY SIDE",
+   "title": "플랜별로 나란히 보면",
+   "blocks": [
+    {
+     "type": "dict",
+     "items": [
+      [
+       "무료",
+       "<b>Netlify</b> Free $0, 월 300크레딧 고정 한도 · <b>Vercel</b> Hobby $0, 항목별 한도"
+      ],
+      [
+       "무료로 상업 사이트",
+       "<b>Netlify</b> 제한 문구 없음 · <b>Vercel</b> 약관상 <b>개인·비상업 용도만</b>"
+      ],
+      [
+       "첫 유료",
+       "<b>Netlify</b> Personal 월 $9(1,000크레딧, 1명) · <b>Vercel</b> 바로 Pro"
+      ],
+      [
+       "팀 요금",
+       "<b>Netlify</b> Pro 월 $20, <b>인원 무제한</b> · <b>Vercel</b> Pro 개발자 좌석 1인당 월 $20, 보기 전용은 무료"
+      ],
+      [
+       "동시 빌드",
+       "<b>Netlify</b> Free·Personal 1개, Pro 3개(추가 $40) · <b>Vercel</b> Hobby 2vCPU 빌드, Pro 4~30vCPU"
+      ],
+      [
+       "프로젝트 수",
+       "<b>Vercel</b> Hobby 200개, 하루 배포 100회 · Pro 무제한, 하루 6,000회"
+      ],
+      [
+       "기업용",
+       "둘 다 Enterprise 별도 견적, 99.99% 가동 보장(SLA)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "nav": "기능",
+   "kicker": "FEATURES",
+   "title": "기능에서 갈리는 지점",
+   "blocks": [
+    {
+     "type": "folders",
+     "items": [
+      {
+       "name": "Next.js",
+       "tag": "Vercel 우세",
+       "tone": "a2",
+       "text": "Vercel이 직접 만들고 바로 지원. Netlify는 OpenNext 어댑터로 Next.js 13.5 이상 지원"
+      },
+      {
+       "name": "서버 함수 언어",
+       "tag": "Vercel 우세",
+       "tone": "a2",
+       "text": "Vercel: Node.js·Python·Go·Ruby. Netlify: JavaScript/TypeScript·Go(Vercel 비교 문서 기준)"
+      },
+      {
+       "name": "함수 실행 시간",
+       "tag": "Vercel 우세",
+       "tone": "a2",
+       "text": "Vercel Hobby 300초, Pro 최대 800초. Netlify 일반 함수 60초, 백그라운드 함수 15분(외부 비교 글 기준)"
+      },
+      {
+       "name": "문의 폼",
+       "tag": "Netlify 우세",
+       "tone": "a1",
+       "text": "Netlify Forms가 기본 내장. HTML 폼을 배포하면 자동 감지해 제출을 받아 줌"
+      },
+      {
+       "name": "데이터베이스",
+       "tag": "Netlify 우세",
+       "tone": "a1",
+       "text": "Netlify Database(Postgres)가 모든 플랜에 포함. Vercel은 마켓플레이스 연동 + Blob 저장소"
+      },
+      {
+       "name": "보안·방화벽",
+       "tag": "비슷",
+       "tone": "a1",
+       "text": "둘 다 기본 방화벽·DDoS 방어. Vercel은 무료에서도 사용자 규칙 3개, IP 차단 10개"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nav": "주의",
+   "kicker": "WATCH OUT",
+   "title": "고르기 전에 꼭 볼 것",
+   "blocks": [
+    {
+     "type": "safety",
+     "neverTitle": "이렇게 쓰면 곤란합니다",
+     "never": [
+      "Vercel Hobby(무료)로 회사·가게·광고 수익 사이트 운영",
+      "Netlify 무료 계정에 중요한 사이트 여러 개를 함께 두기(한 곳만 넘쳐도 전부 멈춤)",
+      "Netlify 유료에서 자동 충전을 끈 채 트래픽이 큰 행사 진행"
+     ],
+     "notes": [
+      [
+       "Netlify 기존 고객",
+       "2025년 9월 4일 이전 가입 계정은 예전 요금제를 유지할 수 있어, 위 크레딧 표와 다를 수 있습니다"
+      ],
+      [
+       "Vercel 학습 데이터",
+       "약관상 Hobby·Pro 체험 계정의 콘텐츠는 AI 학습에 쓰일 수 있습니다"
+      ],
+      [
+       "요금은 바뀝니다",
+       "두 회사 모두 최근 요금 체계를 바꿨습니다. 결제 전 공식 요금표를 다시 보세요"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "nav": "질문",
+   "kicker": "Q&A",
+   "title": "자주 묻는 질문",
+   "blocks": [
+    {
+     "type": "faq",
+     "items": [
+      [
+       "개인 포트폴리오·연습용이면 어디가 낫나요?",
+       "둘 다 무료로 충분합니다. Next.js면 Vercel, 순수 HTML이나 폼이 필요하면 Netlify가 손이 덜 갑니다."
+      ],
+      [
+       "갑자기 요금 폭탄이 나올 수 있나요?",
+       "무료 플랜은 둘 다 청구되지 않고 멈춥니다. 유료는 Netlify가 자동 충전(기본 꺼짐), Vercel Pro가 기본 예산 $200 알림과 선택형 자동 멈춤으로 막습니다."
+      ],
+      [
+       "한쪽에서 다른 쪽으로 옮기기 어렵나요?",
+       "정적 사이트는 비교적 쉽습니다. 폼·DB·플랫폼 전용 함수처럼 한쪽 기능에 기대면 옮길 때 다시 손봐야 합니다."
+      ],
+      [
+       "팀이 5명이면 비용 차이는?",
+       "Netlify Pro는 인원 무제한이라 월 $20부터, Vercel Pro는 배포하는 개발자마다 월 $20입니다. 실제 사용량 요금은 따로 붙을 수 있습니다."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "nav": "확인",
+   "kicker": "VERIFICATION",
+   "title": "무엇을 믿어도 되는가",
+   "blocks": [
+    {
+     "type": "ledger",
+     "ok": [
+      "두 회사 공식 요금표의 플랜 가격·크레딧·한도(2026-11-27 확인)",
+      "Vercel Hobby 비상업 용도 제한: Vercel 이용약관 4조",
+      "Vercel Hobby·Pro 함수 시간, 프로젝트·배포 수: Vercel Hobby 문서",
+      "Netlify Forms 내장: Netlify 공식 문서"
+     ],
+     "no": [
+      "Netlify 함수 60초·15분 제한은 외부 비교 글(encore.dev) 기준, 공식 문서 미확인",
+      "Netlify 함수 언어 범위는 Vercel 측 비교 문서 기준",
+      "실제 같은 사이트를 두 곳에 배포해 속도·요금을 재 보지는 않음",
+      "Netlify 세부 로고 사용 가이드"
+     ],
+     "sources": [
+      "vercel.com/pricing · vercel.com/docs/plans/hobby · vercel.com/legal/terms (2026-11-27)",
+      "netlify.com/pricing · docs.netlify.com/manage/forms/setup (2026-11-27)",
+      "vercel.com/kb/guide/vercel-vs-netlify · encore.dev/articles/vercel-vs-netlify",
+      "로고: vercel.com/geist/brands, netlify.com/press 공식 파일. Vercel®·Netlify®는 각 회사 상표이며 이 자료는 두 회사와 제휴 관계가 없습니다"
+     ]
+    }
+   ]
+  }
+ ],
+ "footer": {
+  "html": "Netlify vs Vercel · 2026년 11월 공식 자료 기준 비교"
+ }
+}

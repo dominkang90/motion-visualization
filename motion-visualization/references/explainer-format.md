@@ -4,7 +4,8 @@
 
 ```json
 {
-  "meta": {"kind": "explainer", "title": "", "theme": "paper|calm|warm|night", "ratio": "16:9|9:16"},
+  "meta": {"kind": "explainer", "title": "", "theme": "paper|calm|warm|night", "ratio": "16:9|9:16",
+           "goal": "누가 보고 무엇을 정하나(한 문장)", "sides": ["왼쪽 대상", "오른쪽 대상"]},
   "images": {"logo": "brand:pickle/pieup.webp"},
   "scenes": [ {"type": "...", "say": "자막", "beats": [ {"say": "..."} ]} ]
 }
@@ -23,7 +24,7 @@
 | chapter | no, title | 큰 단락 시작. 위쪽 진행 막대와 동그라미 로드맵이 자동 |
 | kinetic | text, hl(강조 낱말), sub | 핵심 한 문장을 낱말 단위로 튀어나오게 |
 | build | nodes[{id,icon,label,sub,hub,at:[x,y]}], links[[from,to,라벨,"flow"?]], token, beats[{show[],link[],send,focus,mark{id:"ok"/"bad"}}] | 관계도를 하나씩 쌓기. send=링크 번호(쪽지가 선을 따라 날아감), focus=나머지 흐리게, mark=✓/✗ 배지 |
-| compare | cols[{icon,title,tone:"good"/"bad",items[]}], beats[{show:열번호}] | 같은 예시 전후·두 대상 비교. 항목 앞 `*`는 차이 강조 |
+| compare | cols[{icon,title,tone:"good"/"bad",items[]}], beats[{show:열번호}] | 같은 예시 전후·두 대상 비교. 항목 앞 `*`는 차이 강조. tone 없이 title이 `meta.sides`와 같으면 왼쪽 청록·오른쪽 강조색으로 매거진과 같은 색 고정 |
 | list | items[{icon,title,sub}], beats(항목 수만큼) | 단계·준비물 하나씩 |
 | doc | title, meta, rows[[머리,내용]], caption, beats[{row,label,zoom}] | 실제 문서·쪽지 해부. row 하나만 밝히고 말풍선 |
 | focus | img, caption, beats[{zoom:[x,y,w,h], box:[x,y,w,h], label}] | 실제 화면 확대·집중 조명·말풍선. 좌표는 이미지 비율(0~1) |
@@ -49,6 +50,11 @@ python scripts/check.py out.html --shots shots/                       # beats-12
 python scripts/record.py out.html -o out.mp4 --both                   # out-ppt.mp4 + out-shorts.mp4 (무음, 30fps)
 ```
 예시: `examples/pickle-explainer.json`.
+
+## 점검
+
+- `build.py`: goal 없음, 같은 장면 종류 3연속, compare 열 순서·이름이 sides와 다름을 경고.
+- `check.py`(390px): 모든 비트를 넘기며 재생 버튼·재생 막대의 누름 영역, 명암 대비, 키보드 접근을 본다. 화면이 통째로 줄어드는 영상이라 글자 크기는 보지 않는다(휴대폰은 9:16판).
 
 ## 알려진 한계 (다음 고도화 후보)
 

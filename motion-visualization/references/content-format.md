@@ -20,7 +20,7 @@ AI가 직접 쓰는 것은 이 파일 하나다. 대부분의 문자열에는 �
 ```
 
 - `goal`·`purpose`·`sides`·`terms`는 인지부하 점검용이다. 규칙은 `references/cognitive-load.md`.
-- 본문 아무 문자열에서나 `<span class="unv">미확인</span>`으로 그 자리에 미확인 표시를 붙인다.
+- 본문 아무 문자열에서나 그 자리에 사실 상태를 붙인다: `<span class="unv">미확인</span>`(출처 못 찾음), `<span class="est">추정</span>`(계산·어림값), `<span class="sim">예시</span>`(지어낸 예·모의 화면). 표시가 없는 문장은 확인한 사실로 읽힌다.
 - 이미지는 `images`에 한 번 등록하고 블록에서는 `"@이름"`으로 부른다. `brand:` = 로고 보관함, 상대경로 = content.json 기준.
 - `stage`는 세 이미지(left/center/right) 또는 그림 하나(`"hero": "@x"`).
 - `mode`: 기본 `deck`(한 섹션 = 한 장면, ‹ › 버튼·← → 키·스와이프·터치패드 좌우로 넘김, 3D 전환). `scroll`은 한 페이지로 길게. 보는 사람은 위쪽 버튼이나 주소 뒤 `?mode=scroll`로 바꿀 수 있다. 넘겨 보기에서는 한 장면에 블록 2~3개가 읽기 좋다.
@@ -58,7 +58,7 @@ diagram에서 `hub` 카드의 `chip`도 순번에 넣는다(예: `"3 · 핵심"`
 
 | type | 필드 | 쓰는 곳 |
 |---|---|---|
-| decide | items[{q, yes, to, no, noTo, yesLabel, noLabel}], end | 결정용 첫 장면. 질문마다 예→결과(to: "a"/"b"/대상 이름이면 그 색), 아니오→no(비우면 "다음 질문으로"). end는 끝까지 아니오일 때 |
+| decide | items[{q, yes, to, no, noTo, yesLabel, noLabel}], end | 결정용 첫 장면. 예/아니오는 버튼이라 누르면 그 길만 밝게 남고 나머지는 흐려짐('다시 고르기'). 처음에는 모두 보여 MP4·인쇄에도 내용이 남음. 질문마다 예→결과(to: "a"/"b"/대상 이름이면 그 색), 아니오→no(비우면 "다음 질문으로"). end는 끝까지 아니오일 때 |
 | compare | cols[이름 또는 {name,logo}] (없으면 meta.sides), keyTitle, rows[[기준, 왼쪽html, 오른쪽html, 유리("a"/"b"/이름, 선택)]], note, winLabel | 두 대상 비교. 열 순서·색 고정, 유리한 칸만 그 대상 색 |
 | verdict | quote, stats[[값,단위,설명]], fit{good[],bad[],goodTitle,badTitle}, next{label,html} | 첫 섹션 결론. 값이 정수면 숫자가 올라가는 모션 |
 | scenes | items[{logo,alt,quote,text,dark}], bridge{icon,alt,html} | 문제 두 장면 비교 |

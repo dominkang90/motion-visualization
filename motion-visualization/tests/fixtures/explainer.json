@@ -1,0 +1,132 @@
+{
+ "meta": {
+  "kind": "explainer",
+  "title": "Netlify vs Vercel · 설명 영상",
+  "brand": "Netlify vs Vercel",
+  "theme": "calm",
+  "ratio": "16:9",
+  "sides": [
+   "Netlify",
+   "Vercel"
+  ],
+  "goal": "배포처를 고르려는 사람이 1분 안에 내 경우의 답을 안다"
+ },
+ "images": {},
+ "scenes": [
+  {
+   "type": "title",
+   "kicker": "배포처 고르기",
+   "title": "Netlify와 Vercel,\n**질문 세 개**면 정해져요",
+   "say": "1분 안에 **내 답**을 찾아봐요"
+  },
+  {
+   "type": "chapter",
+   "no": "01",
+   "title": "돈 세는 방식이 달라요",
+   "say": "가장 큰 차이부터 볼게요"
+  },
+  {
+   "type": "compare",
+   "cols": [
+    {
+     "title": "Netlify",
+     "items": [
+      "크레딧 **한 통**에서 전부 차감",
+      "무료 월 300크레딧",
+      "*넘치면 모든 프로젝트 정지"
+     ]
+    },
+    {
+     "title": "Vercel",
+     "items": [
+      "항목마다 **따로** 한도",
+      "무료 전송 100GB/월",
+      "*무료는 비상업 용도만"
+     ]
+    }
+   ],
+   "beats": [
+    {
+     "show": 0,
+     "say": "Netlify는 **크레딧 한 통**에서 빼고"
+    },
+    {
+     "show": 1,
+     "say": "Vercel은 **항목마다** 따로 세요"
+    }
+   ]
+  },
+  {
+   "type": "chapter",
+   "no": "02",
+   "title": "질문 세 개",
+   "say": "이제 위에서부터 답해 보세요"
+  },
+  {
+   "type": "map",
+   "rows": [
+    [
+     "돈 버는 사이트?",
+     "Netlify (Vercel 무료는 비상업)"
+    ],
+    [
+     "Next.js로 만듦?",
+     "Vercel (만든 회사)"
+    ],
+    [
+     "배포하는 사람 2명+?",
+     "Netlify (Pro 인원 무제한)"
+    ]
+   ],
+   "say": "처음 **'예'**가 나온 줄이 답이에요"
+  },
+  {
+   "type": "kinetic",
+   "text": "셋 다 아니오면 어느 쪽도 괜찮아요",
+   "hl": "어느 쪽도",
+   "sub": "폼·DB는 Netlify, 긴 서버 작업은 Vercel",
+   "say": "그땐 필요한 기능으로 고르면 돼요"
+  },
+  {
+   "type": "chapter",
+   "no": "03",
+   "title": "결제 전에",
+   "say": "마지막으로 주의할 점"
+  },
+  {
+   "type": "list",
+   "items": [
+    {
+     "title": "Vercel 무료로 상업 사이트 운영 금지"
+    },
+    {
+     "title": "Netlify 무료 한 계정에 중요 사이트 몰지 않기"
+    },
+    {
+     "title": "요금은 바뀌니 결제 전 공식 요금표 확인"
+    }
+   ],
+   "beats": [
+    {
+     "say": "Vercel 무료는 **비상업**만 돼요"
+    },
+    {
+     "say": "Netlify 무료는 한 곳만 넘쳐도 **전부** 멈춰요"
+    },
+    {
+     "say": "결제 전엔 **공식 요금표**를 다시 봐요"
+    }
+   ]
+  },
+  {
+   "type": "end",
+   "title": "오늘의 핵심",
+   "points": [
+    "돈 버는 사이트면 **Netlify**",
+    "Next.js면 **Vercel**",
+    "팀이면 **Netlify** Pro"
+   ],
+   "say": "2026년 11월 공식 자료 기준이에요"
+  }
+ ]
+}

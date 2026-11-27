@@ -47,6 +47,49 @@ SLIDE_HCLIP = """() => { const s = document.querySelector('.slide.cur') || docum
   return Math.round(m); }"""
 
 
+A11Y = r"""() => {
+  const s = document.querySelector('.slide.cur') || document.body, W = innerWidth, out = {small: [], tiny: [], low: [], nokey: []};
+  const vis = e => { const r = e.getBoundingClientRect(), cs = getComputedStyle(e);
+    return r.width > 0 && r.height > 0 && cs.visibility !== 'hidden' && cs.display !== 'none' && +cs.opacity > 0.05 && r.right > 0 && r.left < W; };
+  const name = e => (e.className && typeof e.className === 'string' ? '.' + e.className.trim().split(/\s+/)[0] : e.tagName.toLowerCase()) + ':' + (e.textContent || e.getAttribute('aria-label') || '').trim().slice(0, 14);
+  const parse = c => { let m = c.match(/rgba?\(([^)]+)\)/); if (m) { const p = m[1].split(/[ ,/]+/).filter(Boolean).map(Number); return [p[0], p[1], p[2], p.length > 3 ? p[3] : 1]; }
+    m = c.match(/color\(srgb ([^)]+)\)/); if (m) { const p = m[1].split(/[ /]+/).filter(Boolean).map(Number); return [p[0] * 255, p[1] * 255, p[2] * 255, p.length > 3 ? p[3] : 1]; } return null; };
+  const lum = c => { const f = v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); };
+  const bgOf = e => { let layers = []; for (let x = e; x; x = x.parentElement) { const cs = getComputedStyle(x); if (cs.backgroundImage && cs.backgroundImage !== 'none' && !/gradient/.test(cs.backgroundImage)) return null; const c = parse(cs.backgroundColor); if (c && c[3] > 0) { layers.push(c); if (c[3] >= 0.99) break; } }
+    let r = [255, 255, 255]; for (let i = layers.length - 1; i >= 0; i--) { const c = layers[i]; r = [c[0] * c[3] + r[0] * (1 - c[3]), c[1] * c[3] + r[1] * (1 - c[3]), c[2] * c[3] + r[2] * (1 - c[3])]; } return r; };
+  const ctl = Array.from(document.querySelectorAll('.deckbar button, .dots button, .modebtn, .toc a')).concat(Array.from(s.querySelectorAll('a, button, summary, label, [tabindex], .node, [data-dlg], [data-copy]')));
+  ctl.forEach(e => { if (!vis(e) || getComputedStyle(e).pointerEvents === 'none') return; if (e.tagName === 'A' && !e.closest('.toc') && (e.closest('p, li, td, .dm') || (e.parentElement && e.parentElement.textContent.trim().length > e.textContent.trim().length + 5))) return; const r = e.getBoundingClientRect(); if (Math.min(r.width, r.height) < 24) out.small.push(name(e) + ' ' + Math.round(r.width) + 'x' + Math.round(r.height)); });
+  s.querySelectorAll('*').forEach(e => { if (!vis(e)) return; const cs = getComputedStyle(e);
+    if (cs.cursor === 'pointer' && !e.matches('a[href], button, summary, label, input, select, textarea, [tabindex]') && !e.closest('a[href], button, summary, label, [tabindex]')) out.nokey.push(name(e));
+    const own = Array.from(e.childNodes).some(n => n.nodeType === 3 && n.textContent.trim().length > 1); if (!own) return;
+    const fs = parseFloat(cs.fontSize); if (fs < 12) out.tiny.push(name(e) + ' ' + fs + 'px');
+    const fg = parse(cs.color), bg = bgOf(e); if (!fg || !bg) return; const f = [fg[0] * fg[3] + bg[0] * (1 - fg[3]), fg[1] * fg[3] + bg[1] * (1 - fg[3]), fg[2] * fg[3] + bg[2] * (1 - fg[3])];
+    const L1 = lum(f), L2 = lum(bg), ratio = (Math.max(L1, L2) + 0.05) / (Math.min(L1, L2) + 0.05), big = fs >= 24 || (fs >= 18.66 && +cs.fontWeight >= 700);
+    if (ratio < (big ? 3 : 4.5)) out.low.push(name(e) + ' ' + ratio.toFixed(1)); });
+  return out; }"""
+
+
+def deck_a11y(b, url):
+    """Phone width deck pass (Visual Intelligence v8 post-design: touch targets, tiny text, contrast, keyboard)."""
+    pg = b.new_page(viewport={"width": 390, "height": 844})
+    pg.goto(url, wait_until="domcontentloaded", timeout=30000)
+    pg.wait_for_timeout(1200)
+    n = pg.evaluate("(window.MV && MV.count) || 0")
+    agg = {"small": {}, "tiny": {}, "low": {}, "nokey": {}}
+    for k in range(max(n, 1)):
+        if n:
+            pg.evaluate("i => MV.go(i)", k)
+            pg.wait_for_timeout(900)
+        pg.evaluate("document.querySelectorAll('.slide.cur .reveal').forEach(e=>e.classList.add('in'))")
+        pg.wait_for_timeout(750)
+        r = pg.evaluate(A11Y)
+        for key in agg:
+            for item in r[key]:
+                agg[key].setdefault(item.rsplit(" ", 1)[0] if key != "nokey" else item, (k + 1, item))
+    pg.close()
+    return {k: list(v.values()) for k, v in agg.items()}
+
+
 def deck_hclip(b, url):
     """Phone width (390x844): content cut off at the right edge inside a slide. Page-level scrollWidth misses this
     because each slide clips its own overflow (found 2026-11-27 with a 3-column compare table)."""
@@ -151,6 +194,23 @@ def browser(path, shots):
                         f2 = os.path.join(shots, "beats-%d.png" % w)
                         sheet.screenshot(path=f2, full_page=True); sheet.close()
                         res.append(("OK", "비트 모아보기 저장 " + f2))
+                    if w == 390:
+                        # explainer: stage is a scaled 1920x1080 canvas, so font px is not meaningful here; check controls,
+                        # contrast and keyboard across every beat (Visual Intelligence v8 post-design)
+                        agg = {"small": {}, "low": {}, "nokey": {}}
+                        for k in range(r["beats"]):
+                            pg.evaluate("i => MVX.go(i)", k); pg.wait_for_timeout(900)
+                            ax = pg.evaluate(A11Y)
+                            for key in agg:
+                                for item in ax[key]:
+                                    agg[key].setdefault(item.rsplit(" ", 1)[0] if key != "nokey" else item, (k + 1, item))
+                        LAB = {"small": "누르는 영역 24px 미만", "low": "명암 대비 부족(4.5:1, 큰 글자 3:1)", "nokey": "마우스로만 누를 수 있는 요소(키보드 불가)"}
+                        for key, lab in LAB.items():
+                            items = list(agg[key].values())
+                            if items:
+                                res.append(("WARN", "설명 영상 %s %d곳: %s" % (lab, len(items), ", ".join("%d비트 %s" % (sl, it) for sl, it in items[:4]))))
+                            else:
+                                res.append(("OK", "설명 영상 %s 없음" % lab))
                     errs2 = list(errs)
                     pg.close()
                     if errs2:
@@ -170,6 +230,14 @@ def browser(path, shots):
                                     + ". 표·긴 낱말·그림 폭 확인"))
                     else:
                         res.append(("OK", "휴대폰(390px) 장면 잘림 없음"))
+                    ax = deck_a11y(b, url)
+                    LAB = {"small": "누르는 영역 24px 미만", "tiny": "12px 미만 글자", "low": "명암 대비 부족(4.5:1, 큰 글자 3:1)", "nokey": "마우스로만 누를 수 있는 요소(키보드 불가)"}
+                    for key, lab in LAB.items():
+                        items = ax[key]
+                        if items:
+                            res.append(("WARN", "휴대폰 %s %d곳: %s" % (lab, len(items), ", ".join("%d번 %s" % (sl, it) for sl, it in items[:4]))))
+                        else:
+                            res.append(("OK", "휴대폰 %s 없음" % lab))
                     i0 = pg.evaluate("MV.index()")
                     pg.locator("#nx").click(); pg.wait_for_timeout(700)
                     i1 = pg.evaluate("MV.index()")

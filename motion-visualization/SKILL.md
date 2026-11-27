@@ -34,7 +34,7 @@ description: "모션시각화. Turn an existing document, guide, lecture note or
 
 1. **입력 확정.** 위 '시작 전에 먼저 묻기'로 형식·비율을 정한다. 원본 문서, 읽을 사람, 수준(전문가판 / 초보자판 / 둘 다). 요청에 없으면 전문가판 하나. "쉽게, 초보, 초등학생"이면 초보자판. 결과는 작업 폴더에 저장.
 2. **핵심 뽑기(머릿속 메모, 채팅에 길게 쓰지 않기).** 결론 한 문장, 맞는/안 맞는 사람, 단계, 주의·금지, 실제 기록, 확인한 것/못 한 것, 원문 예시와 새 아이디어 구분.
-2-1. **읽는 목적 정하기(묻지 않음).** `references/cognitive-load.md`를 읽고 `meta.goal`(누가 읽고 무엇을 정하나)·`purpose`(decide/learn/do)를 적는다. 두 대상 비교면 `sides`로 왼쪽·오른쪽과 색을 고정하고, 첫 장면은 `decide`, 비교는 `compare` 표로 쓴다.
+2-1. **읽는 목적 정하기(묻지 않음).** 내용이 장면 3개가 안 되면 표 하나나 짧은 답이 더 나은지 먼저 따져 보고 보고에 적는다. `references/cognitive-load.md`를 읽고 `meta.goal`(누가 읽고 무엇을 정하나)·`purpose`(decide/learn/do)를 적는다. 두 대상 비교면 `sides`로 왼쪽·오른쪽과 색을 고정하고, 첫 장면은 `decide`, 비교는 `compare` 표로 쓴다.
 3. **이미지.** `assets/brands/` 보관함 먼저(공개판에는 상표 파일 대신 받는 곳·규칙을 적은 `sources.json`만 있다). 없으면 `references/image-sourcing.md` 순서로 공식 자료를 받아 보관함에 넣고 `sources.json`을 쓴다. 설명하는 웹사이트 자체의 화면은 `scripts/capture.py`로 찍어 작업 폴더 `assets/`에 둔다(보관함에 넣지 않음).
 4. **옷 고르기.** `paper`(잡지·따뜻한 종이), `calm`(회사·기술 남색), `warm`(생활·요리·교육), `night`(어두운 화면). 브랜드 색이 뚜렷하면 `meta.accent`로 강조색만 바꾼다.
 5. **content.json 작성.** 양식은 `references/content-format.md`. 초보자판은 `references/beginner-rules.md`도 따른다. 둘 다 만들면 파일 두 개(같은 사실, 다른 말).
@@ -44,7 +44,8 @@ description: "모션시각화. Turn an existing document, guide, lecture note or
 7-1. **설명 영상이면** `check.py`의 `beats-1280.png`(모든 비트 모아보기) 한 장으로 확인한다. 숏폼판을 골랐으면 `build.py --ratio 9:16`으로 HTML을 따로 만든다. MP4를 골랐을 때만 `scripts/record.py`로 만든다(한 판만이면 `--ratio 16:9` 또는 `--ratio 9:16`, 둘 다면 `--both`). 만든 뒤 `ffprobe`로 길이·해상도를 확인한다. 영상은 무음이다.
 7-2. **매거진 MP4를 골랐으면** 같은 `record.py`가 넘겨 보기 HTML을 알아보고 장면마다 `--hold`초(기본 5) 보여 주며 녹화한다. 장면 안에서 스크롤해야 보이는 부분은 영상에 나오지 않으므로, 넘침 경고를 먼저 없앤다. 만든 뒤 한 장면을 `ffmpeg -ss`로 뽑아 확인한다.
 7-3. **여러 편 묶음(시리즈)이면** 각 편의 `meta.series`에 같은 목록을 넣고 자기 편에만 `"current": true`를 준다. 표지와 맨 아래에 편 사이 이동 링크가 생긴다. 파일 이름은 편 번호가 들어간 영문·숫자 위주로 짓는다.
-8. **보고.** 파일 위치, `goal` 한 줄, 점검 결과(통과/미확인 구분, 남긴 인지부하 경고와 이유), 확인한 것·못 한 것, 그림 출처, 원문과 달라진 점. 대표 캡처 1장을 첨부한다.
+7-4. **스킬 파일(템플릿·스크립트)을 고쳤으면** `scripts/selftest.py --browser`를 돌려 FAIL 0을 확인한다(`tests/TESTS.md`).
+8. **보고.** 파일 위치, `goal` 한 줄, 품질 점수표와 PASS/FAIL/NOT RUN(`references/quality-gate.md`, 시험 안 한 항목은 만점 금지), 점검 결과(통과/미확인 구분, 남긴 인지부하 경고와 이유), 확인한 것·못 한 것, 그림 출처, 원문과 달라진 점. 대표 캡처 1장을 첨부한다.
 
 ## 실행 환경
 
@@ -55,6 +56,10 @@ description: "모션시각화. Turn an existing document, guide, lecture note or
 - 여러 파이썬이 섞여 Playwright를 못 찾으면 Playwright가 설치된 파이썬으로 직접 실행하고, 필요하면 `PYTHONHOME`·`PYTHONPATH` 환경 변수를 비운다.
 
 **파이썬을 실행할 수 없는 환경이면:** `assets/template.html`을 복사해 `__CONTENT_JSON__` 자리에 content.json을 넣고(`</`는 `<\/`로), `__TITLE__`을 제목으로 바꾼다. 이미지는 `https://` 주소나 data URI로 넣는다. 이 경우 인지부하 경고와 화면 점검은 받을 수 없다.
+## 피드백을 받으면
+
+`references/quality-gate.md`의 '피드백을 받았을 때' 5단계를 따른다. 사용자 말과 내 추측을 나누고, 고칠 곳 하나와 다음 실험 하나를 제안한다.
+
 ## 지키는 것
 
 - 원문에 없는 사실·숫자·성공 경험을 만들지 않는다. 미확인은 초보자판에서도 지우지 않는다.

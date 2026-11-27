@@ -1,5 +1,5 @@
 {
-  "meta": {"kind": "explainer", "title": "우체통 · 설명 영상", "brand": "우체통", "theme": "paper", "ratio": "16:9"},
+  "meta": {"kind": "explainer", "title": "우체통 · 설명 영상", "brand": "우체통", "theme": "paper", "ratio": "16:9", "goal": "처음 보는 사람이 피클과 클로드 코드를 깃허브 우체통으로 잇는 원리를 1분 안에 이해한다"},
   "images": {"pieup": "brand:pickle/pieup.webp", "spark": "brand:anthropic/claude-spark-clay.svg", "ghW": "brand:github/invertocat-white.svg", "conn": "brand:pickle/connect-screen.webp"},
   "scenes": [
     {"type": "title", "kicker": "AI 두 개를 잇는 법", "title": "폰 속 AI와 집 컴퓨터 AI가\n**쪽지**를 주고받는다면?", "icons": ["@pieup", "@spark"], "say": "둘을 잇는 **우체통** 이야기예요"},

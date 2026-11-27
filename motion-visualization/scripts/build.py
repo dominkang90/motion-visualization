@@ -110,11 +110,48 @@ def lint_explainer(c, warn):
     walk_strings(c, texts)
     if any("\u2014" in t for t in texts):
         warn.append("긴 줄표(—) 있음")
+    if not (c.get("meta") or {}).get("goal"):
+        warn.append("인지부하: meta.goal 없음. '누가 보고 무엇을 정하거나 하는가'를 한 문장으로 적기")
+    sides = [str(x) for x in ((c.get("meta") or {}).get("sides") or [])][:2]
+    if len(sides) == 2:
+        for i, s in enumerate(sc):
+            if s.get("type") == "compare":
+                names = [str((col or {}).get("title") or "").replace("*", "") for col in (s.get("cols") or [])]
+                hit = [n for n in names if n in sides]
+                if len(hit) == 2 and hit != sides:
+                    warn.append("인지부하: 장면 %d compare 순서가 %s와 반대. 항상 %s 먼저(왼쪽)" % (i + 1, " → ".join(sides), sides[0]))
+                elif len(hit) < 2 and not any((col or {}).get("tone") for col in (s.get("cols") or [])):
+                    warn.append("인지부하: 장면 %d compare 제목이 meta.sides 이름과 달라 색이 고정되지 않음" % (i + 1))
+    kinds = [s.get("type") for s in sc]
+    for j in range(len(kinds) - 2):
+        if kinds[j] == kinds[j + 1] == kinds[j + 2] and kinds[j] not in ("chapter",):
+            warn.append("인지부하: 장면 %d~%d가 모두 '%s'. 같은 모양이 이어지면 지루해짐, 다른 장면 종류 섞기" % (j + 1, j + 3, kinds[j]))
+            break
+
+
+STRUCT_KEYS = {"type", "tone", "key", "img", "icon", "icons", "logo", "storageKey", "id", "href", "where", "okLabel", "label", "chip"}
+
+
+def _content_strings(node, out):
+    """Reader-facing text only: skip structural values and fixed row titles of detail popups."""
+    if isinstance(node, str):
+        out.append(node)
+    elif isinstance(node, list):
+        for x in node:
+            _content_strings(x, out)
+    elif isinstance(node, dict):
+        for k, v in node.items():
+            if k in STRUCT_KEYS:
+                continue
+            if k == "detail" and isinstance(v, list):
+                _content_strings([x[1] if isinstance(x, list) and len(x) > 1 else x for x in v], out)
+                continue
+            _content_strings(v, out)
 
 
 def _plain(node):
     out = []
-    walk_strings(node, out)
+    _content_strings(node, out)
     return TAG_RE.sub(" ", " ".join(x for x in out if not x.startswith("@")))
 
 
@@ -186,6 +223,15 @@ def lint_load(c, warn):
             warn.append(P + "purpose=decide인데 첫 장면에 decide/verdict 없음. 답을 먼저 보여 주기")
         if len(secs) > 6:
             warn.append(P + "결정용 자료인데 섹션 %d개(권장 6개 이하). 반복·배경 장면 합치기" % len(secs))
+    # 7) lightest useful medium (Visual Intelligence v8): very short content may not need a magazine
+    if 0 < len(secs) < 3:
+        warn.append(P + "섹션 %d개. 매거진보다 표 하나나 짧은 답이 더 가벼울 수 있음(보고에 이유 적기)" % len(secs))
+    # 8) same layout over and over (dashboard fatigue)
+    firsts = [((s.get("blocks") or [{}])[0] or {}).get("type") for s in secs]
+    for j in range(len(firsts) - 2):
+        if firsts[j] and firsts[j] != "steps" and firsts[j] == firsts[j + 1] == firsts[j + 2]:
+            warn.append(P + "섹션 %d~%d가 모두 '%s'로 시작. 같은 모양 반복, 표현 바꾸거나 합치기" % (j + 1, j + 3, firsts[j]))
+            break
     # 6) fixed side/colour mapping: left/first = sides[0] = accent2 (a2), right/second = sides[1] = accent (a1)
     if len(sides) == 2:
         want = {sides[0]: "a2", sides[1]: "a1"}
